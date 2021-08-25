@@ -32,8 +32,12 @@ Release cadence of first pre-releases being cut is 6 weeks.
 | v2.25          | 2021-02-10                                 | Julien Pivotto (GitHub: @roidelapluie)      |
 | v2.26          | 2021-03-24                                 | Bartek Plotka (GitHub: @bwplotka)           |
 | v2.27          | 2021-05-05                                 | Chris Marchbanks (GitHub: @csmarchbanks)    |
-| v2.28          | 2021-06-16                                 | **searching for volunteer**                 |
-| v2.29          | 2021-07-28                                 | **searching for volunteer**                 |
+| v2.28          | 2021-06-16                                 | Julius Volz (GitHub: @juliusv)              |
+| v2.29          | 2021-07-28                                 | Frederic Branczyk (GitHub: @brancz)         |
+| v2.30          | 2021-09-08                                 | Ganesh Vernekar (GitHub: @codesome)         |
+| v2.31          | 2021-10-20                                 | **searching for volunteer**                 |
+| v2.32          | 2021-12-01                                 | **searching for volunteer**                 |
+| v2.33          | 2022-01-12                                 | **searching for volunteer**                 |
 
 If you are interested in volunteering please create a pull request against the [prometheus/prometheus](https://github.com/prometheus/prometheus) repository and propose yourself for the release series of your choice.
 
@@ -95,17 +99,20 @@ Either upgrade the dependencies within their existing version constraints as spe
 
 ```
 cd web/ui/react-app
-yarn upgrade
-git add yarn.lock
+npm update
+git add package.json package-lock.json
 ```
 
 Or alternatively, update all dependencies to their latest major versions. This is potentially more disruptive and will require more follow-up fixes, but should be done from time to time (use your best judgement):
 
 ```
 cd web/ui/react-app
-yarn upgrade --latest
-git add package.json yarn.lock
+npx npm-check-updates -u
+npm install
+git add package.json package-lock.json
 ```
+
+You can find more details on managing npm dependencies and updates [in this blog post](https://www.carlrippon.com/upgrading-npm-dependencies/).
 
 ### 1. Prepare your release
 
@@ -150,7 +157,7 @@ Signing a tag with a GPG key is appreciated, but in case you can't add a GPG key
 Once a tag is created, the release process through CircleCI will be triggered for this tag and Circle CI will draft the GitHub release using the `prombot` account.
 
 Finally, wait for the build step for the tag to finish. The point here is to wait for tarballs to be uploaded to the Github release and the container images to be pushed to the Docker Hub and Quay.io. Once that has happened, click _Publish release_, which will make the release publicly visible and create a GitHub notification.
-** Note: ** for a release candidate version ensure the _This is a pre-release_ box is checked when drafting the release in the Github UI. The CI job should take care of this but it's a good idea to double check before clicking _Publish release_.`
+**Note:** for a release candidate version ensure the _This is a pre-release_ box is checked when drafting the release in the Github UI. The CI job should take care of this but it's a good idea to double check before clicking _Publish release_.`
 
 ### 3. Wrapping up
 
